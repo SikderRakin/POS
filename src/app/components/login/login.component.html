@@ -1,0 +1,40 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <form [formGroup]="loginForm" class="example-form">
+      
+      <mat-card-content>
+        <mat-form-field class="full-width-input">
+          <mat-label>Enter your email</mat-label>
+          <input matInput name="email" placeholder="pat@example.com" formControlName="email">
+          <mat-error *ngIf="loginForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input">
+          <mat-label>Enter your password</mat-label>
+          <input matInput name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </mat-card-content>
+     
+
+    </form>
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <app-button *ngIf="!isAuthenticated" (btnClick)="logIn()" color="warn" text="LogIn"
+        [isDisable]="!loginForm.valid"></app-button>
+      <app-button *ngIf="isAuthenticated" (btnClick)="logOut()" color="primary" text="LogOut" isDisable="false">
+      </app-button>
+      <app-button (btnClick)="readprofile()" color="primary" text="ReadProfile" isDisable="false"></app-button>
+    </div>
+  </mat-card>
+
+</div>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,47 @@
+<mat-sidenav-container autosize >
+    <mat-sidenav #sidenav mode="side" opened="true">
+     
+
+      <mat-nav-list>
+      <mat-list-item>
+        <mat-icon mat-list-icon class="chevron-button sidenav-button" (click)="isExpanded = !isExpanded" [ngClass]="{'rotated': isExpanded}">chevron_right</mat-icon>
+ 
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list><span class="material-icons-outlined">
+      
+        </span>
+        <mat-list-item>
+            <div fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-icon aria-hidden="false" [routerLink]="'landing'"  aria-label="Example home icon">home</mat-icon>
+        <span *ngIf="isExpanded">Home</span>
+            </div>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list>
+        <mat-list-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">person_add</mat-icon>
+        <span *ngIf="isExpanded">User Entry</span>
+        </mat-list-item>
+      </mat-nav-list>
+      <mat-nav-list>
+        <mat-list-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">qr_code_2</mat-icon>
+        <span  *ngIf="isExpanded">Product Entry</span>
+        </mat-list-item>
+        <mat-list-item (click)="logOut()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
+            <span  *ngIf="isExpanded">LogOut</span>
+            </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="content">
+      <mat-toolbar>
+        <h4>Hello everyone</h4>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+    </div>
+
+
+  </mat-sidenav-container>
