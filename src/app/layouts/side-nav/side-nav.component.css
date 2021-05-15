@@ -17,3 +17,17 @@ mat-sidenav-container {
     .chevron-button.rotated {
       transform: rotate(180deg);
     }
+    mat-sidenav  {
+      background: #ec205d;
+      background: linear-gradient(0deg,#ec205d 0,#fd5d93 100%);
+      /* //width: 230px; */
+      display: block;
+      border-radius: 5px;
+      box-shadow: 0 0 45px 0 rgb(0,0,0,.6);
+      transition: .5s cubic-bezier(.685,.0473,.346,1);
+    }
+    /* .log{
+      position: relative
+      padding 0.5rem 0.7rem;
+      z-index:4
+    } */

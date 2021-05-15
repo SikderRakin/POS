@@ -1,4 +1,4 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<div class="login-wrapper" >
 
   <mat-card class="box">
     <mat-card-header>
@@ -26,7 +26,7 @@
      
 
     </form>
-    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <div class="btn-login">
       <app-button *ngIf="!isAuthenticated" (btnClick)="logIn()" color="warn" text="LogIn"
         [isDisable]="!loginForm.valid"></app-button>
       <app-button *ngIf="isAuthenticated" (btnClick)="logOut()" color="primary" text="LogOut" isDisable="false">

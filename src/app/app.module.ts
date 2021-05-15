@@ -4,7 +4,7 @@ import {AppRoutingModule} from  './modules/app-routing/app-routing.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppMaterialModule} from  './modules/app-material/app-material.module'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //Auth Component
 import {AuthInterceptor} from './auth/auth-interceptor';
@@ -34,7 +34,7 @@ import { SideNavComponent } from './layouts/side-nav/side-nav.component';
     AppRoutingModule,
     AppMaterialModule,
     FormsModule,
-    FlexLayoutModule,
+  
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule
