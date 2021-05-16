@@ -11,33 +11,33 @@
     <mat-nav-list><span class="material-icons-outlined">
       
         </span>
-        <mat-list-item>
-            <div fxLayout="row" fxLayoutAlign="space-around center">
-        <mat-icon aria-hidden="false" [routerLink]="'landing'"  aria-label="Example home icon">home</mat-icon>
+        <mat-list-item [routerLink]="'landing'" [routerLinkActive]="['is-active']">
+            
+        <mat-icon aria-hidden="false"   aria-label="Example home icon">home</mat-icon>
         <span *ngIf="isExpanded">Home</span>
-            </div>
+           
         </mat-list-item>
       </mat-nav-list>
       <mat-nav-list>
         <mat-list-item>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">person_add</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">person_add</mat-icon>
         <span *ngIf="isExpanded">User Entry</span>
         </mat-list-item>
       </mat-nav-list>
       <mat-nav-list>
         <mat-list-item>
-        <mat-icon aria-hidden="false" aria-label="Example home icon">qr_code_2</mat-icon>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">qr_code_2</mat-icon>
         <span  *ngIf="isExpanded">Product Entry</span>
         </mat-list-item>
         <mat-list-item (click)="logOut()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon">logout</mat-icon>
+            <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">logout</mat-icon>
             <span  *ngIf="isExpanded">LogOut</span>
             </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 
     <div class="content">
-      <mat-toolbar>
+      <mat-toolbar to>
         <h4>Hello everyone</h4>
       </mat-toolbar>
       <router-outlet></router-outlet>

@@ -20,7 +20,11 @@ body {
   align-items: center;
   justify-content: center;
 }
+.btn-login{
+display: flex;
+justify-content: space-around;
 
+}
 .positronx {
   text-decoration: none;
   color: #ffffff;

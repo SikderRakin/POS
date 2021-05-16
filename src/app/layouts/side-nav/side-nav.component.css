@@ -26,6 +26,16 @@ mat-sidenav-container {
       box-shadow: 0 0 45px 0 rgb(0,0,0,.6);
       transition: .5s cubic-bezier(.685,.0473,.346,1);
     }
+
+    mat-list-list>mat-list-item:hover{
+      color: rgba(255,255,255,1);
+      transition: all .3s ease 0s;
+    }
+
+   .is-active::before{
+     color: rgba(255,255,255,1);
+     transition: all .3s ease 0s;
+                }
     /* .log{
       position: relative
       padding 0.5rem 0.7rem;
