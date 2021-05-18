@@ -6,7 +6,17 @@ const Task = require('./task');
 
 
 const userSchema=new mongoose.Schema({
-    name:{
+    user_name:{
+        type:String,
+        required:true,
+        trim: true
+    },
+    first_name:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    last_name:{
         type:String,
         required:true,
         trim:true
@@ -24,14 +34,14 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
-    age:{
-        type:Number,
-        default:0,
-        validate(value){
-         if(value<0){
-            throw new Error("A positive number is must") 
-         }
-     }
+    DOB:{
+        type: Date,
+        max: Date.now(),
+        // validate(value){
+        //  if(value<0){
+        //     throw new Error("A positive number is must") 
+        //  }
+        //  }
     },
     password:{
         type:String,
@@ -46,6 +56,32 @@ const userSchema=new mongoose.Schema({
             }
         }
     },
+    contact:{
+        type:Number,
+        default:0,
+        validate(value){
+         if(value<0){
+            throw new Error("A positive number is must") 
+         }
+     }},
+     country:{
+        type:String,
+    },
+    region:{
+        type:String,
+        required: true,
+    },
+    address:{
+        type:String,
+        required:true,
+    },
+    zip_code:{
+        type:String,
+    },
+    gender:{
+        type:String,
+        required:true, 
+    },
     tokens:[{
         token:{
             type:String,
@@ -54,7 +90,17 @@ const userSchema=new mongoose.Schema({
     }],
     avatar:{
         type:Buffer
+    },
+    IsActvie:{
+        type:Boolean
+    },
+    RollID:{
+        type:String
+    },
+    EmplyeeCode:{
+        type:String
     }
+
     
 
 },
@@ -78,6 +124,8 @@ userSchema.methods.toJSON=function(){
    const userObject=user.toObject()
    delete userObject.password
    delete userObject.tokens
+
+// add IsActvie , RollID, EmplyeeCode, here to hide them from view
 
    return userObject
 }
