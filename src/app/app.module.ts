@@ -16,6 +16,7 @@ import { ButtonComponent } from './shared/button/button.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HomeComponent } from './components/home/home.component';
 import { SideNavComponent } from './layouts/side-nav/side-nav.component';
+import { UserEntryComponent } from './components/user-entry/user-entry.component';
 
 
 
@@ -27,7 +28,8 @@ import { SideNavComponent } from './layouts/side-nav/side-nav.component';
     ButtonComponent,
     SpinnerComponent,
     HomeComponent,
-    SideNavComponent
+    SideNavComponent,
+    UserEntryComponent
   ],
   imports: [
     BrowserModule,

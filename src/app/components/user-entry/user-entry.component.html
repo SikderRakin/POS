@@ -1,0 +1,94 @@
+<body>
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>Log in</mat-card-title>
+      </mat-card-header>
+
+    <form [formGroup]="userEntryForm" >
+        
+      <mat-card-content class="container" >
+              
+            <mat-form-field class="full-width-input">
+              <mat-label>First Name</mat-label>
+              <input matInput name="first_name" placeholder="" formControlName="first_name">
+              <mat-error *ngIf="userEntryForm.get('first_name').invalid">First Name is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Middle Name</mat-label>
+              <input matInput name="last_name" placeholder="" formControlName="last_name">
+              <mat-error *ngIf="userEntryForm.get('last_name').invalid">Middle Name is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Contact</mat-label>
+              <input matInput name="contact" placeholder="" formControlName="contact">
+              <mat-error *ngIf="userEntryForm.get('contact').invalid">Last Name is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Country</mat-label>
+              <input matInput name="contact" placeholder="" formControlName="country">
+            
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Address</mat-label>
+              <input matInput name="address" placeholder="" formControlName="address">
+              <mat-error *ngIf="userEntryForm.get('address').invalid">Address is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Zip Code</mat-label>
+              <input matInput name="zip_code" placeholder="" formControlName="zip_code">
+              <mat-error *ngIf="userEntryForm.get('zip_code').invalid">Last Name is Required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <mat-label>Emplyee Code</mat-label>
+              <input matInput name="emplyeeCode" placeholder="" formControlName="emplyeeCode">
+              <mat-error *ngIf="userEntryForm.get('emplyeeCode').invalid">Last Name is Required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width-input">
+              <mat-label class="example-margin">Align:</mat-label>
+              <mat-radio-group >
+                   <mat-radio-button class="radioButton" checked value="true" formControlName="gender">Active</mat-radio-button>
+                   <mat-radio-button class="radioButton" value="false" formControlName="gender">Inactive</mat-radio-button>
+                 </mat-radio-group>
+            </mat-form-field>
+           
+           <mat-form-field class="full-width-input">
+          <mat-label>Enter your email</mat-label>
+          <input matInput name="email" placeholder="pat@example.com" formControlName="email">
+          <mat-error *ngIf="userEntryForm.get('email').invalid">{{getErrorMessage()}}</mat-error>
+           </mat-form-field>
+           <mat-form-field class="full-width-input">
+            <mat-label>User Name</mat-label>
+            <input matInput name="userName" placeholder="pat@example.com" formControlName="userName">
+            <mat-error *ngIf="userEntryForm.get('userName').invalid">User Name is Required</mat-error>
+          </mat-form-field>
+        <mat-form-field class="full-width-input">
+          <mat-label>Enter your password</mat-label>
+          <input matInput name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+       
+      </mat-card-content>
+     
+
+    </form>
+    <app-button  (btnClick)="submit()" color="warn" text="LogIn"
+    [isDisable]="!userEntryForm.valid"></app-button>
+   
+      <!-- <div class="btn-login">
+        <app-button *ngIf="!isAuthenticated" (btnClick)="logIn()" color="warn" text="LogIn"
+          [isDisable]="!userEntryForm.valid"></app-button>
+        <app-button *ngIf="isAuthenticated" (btnClick)="logOut()" color="primary" text="LogOut" isDisable="false">
+        </app-button>
+        <app-button (btnClick)="readprofile()" color="primary" text="ReadProfile" isDisable="false"></app-button>
+      </div> -->
+    </mat-card>
+  
+</body>
+  
+  <router-outlet></router-outlet>
+  

@@ -4,6 +4,7 @@ import { LoginComponent } from '../../components/login/login.component';
 import { HomeComponent } from '../../components/home/home.component';
 import { AuthGurad } from '../../auth/auth.guard';
 import { SideNavComponent } from '../../layouts/side-nav/side-nav.component';
+import { UserEntryComponent } from '../../components/user-entry/user-entry.component';
 
 const appRoute: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
@@ -14,6 +15,9 @@ const appRoute: Routes = [
    children: [
     {
       path:'landing', component:HomeComponent
+    },
+    {
+      path:'user-entry',component:UserEntryComponent
     }
 ]
 },

@@ -9,6 +9,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatRadioModule} from '@angular/material/radio';
+
 @NgModule({
   
   exports: [
@@ -21,6 +24,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSidenavModule,
     MatListModule,
     MatToolbarModule,
+    MatCheckboxModule,
+    MatRadioModule,
     MatProgressSpinnerModule 
   ]
 })
