@@ -11,7 +11,7 @@ const appRoute: Routes = [
   {path:'login', component:LoginComponent},
   { path: 'home',
    component: SideNavComponent,
-   canActivate:[AuthGurad],
+  
    children: [
     {
       path:'landing', component:HomeComponent

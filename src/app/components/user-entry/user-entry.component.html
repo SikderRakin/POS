@@ -7,8 +7,7 @@
 
     <form [formGroup]="userEntryForm" >
         
-      <mat-card-content class="container" >
-              
+    <div class="container">
             <mat-form-field class="full-width-input">
               <mat-label>First Name</mat-label>
               <input matInput name="first_name" placeholder="" formControlName="first_name">
@@ -45,14 +44,23 @@
               <mat-error *ngIf="userEntryForm.get('emplyeeCode').invalid">Last Name is Required</mat-error>
             </mat-form-field>
 
-            <mat-form-field class="full-width-input">
-              <mat-label class="example-margin">Align:</mat-label>
-              <mat-radio-group >
-                   <mat-radio-button class="radioButton" checked value="true" formControlName="gender">Active</mat-radio-button>
-                   <mat-radio-button class="radioButton" value="false" formControlName="gender">Inactive</mat-radio-button>
+            <section class="full-width-input">
+              <mat-label class="example-margin" >Gender:</mat-label>
+              <mat-radio-group formControlName="gender">
+                   <mat-radio-button class="radioButton"  value="Male">Male</mat-radio-button>
+                   <mat-radio-button class="radioButton" value="Female" >Female</mat-radio-button>
+                   <mat-radio-button class="radioButton" value="Others" >Others</mat-radio-button>
                  </mat-radio-group>
+            </section>
+            <mat-form-field appearance="outline">
+              <mat-label>Roll Type</mat-label>
+              <mat-select formControlName="roll">
+                <mat-option value="Admin">Admin</mat-option>
+                <mat-option value="Sales">Sales</mat-option>
+                <mat-option value="Others">Others</mat-option>
+              </mat-select>
             </mat-form-field>
-           
+              <mat-hint *ngIf="!userEntryForm.get('roll').valid && userEntryForm.get('roll').touched" class="form-text text-muted">*Roll Type is required</mat-hint>
            <mat-form-field class="full-width-input">
           <mat-label>Enter your email</mat-label>
           <input matInput name="email" placeholder="pat@example.com" formControlName="email">
@@ -71,9 +79,8 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
-       
-      </mat-card-content>
-     
+    
+      </div>
 
     </form>
     <app-button  (btnClick)="submit()" color="warn" text="LogIn"

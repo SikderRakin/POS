@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-user-entry',
@@ -17,26 +17,45 @@ export class UserEntryComponent implements OnInit {
 
     return this.userEntryForm.get('email').hasError('email') ? 'Not a valid email' : '';
   }
-  constructor() { }
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.userEntryForm=new FormGroup({
+
+    this.userEntryForm=this._formBuilder.group({
       
-      userName :    new FormControl('', [Validators.required]),
-      first_name :  new FormControl('', [Validators.required]),
-      last_name :   new FormControl('', [Validators.required]),
-      contact :     new FormControl('', [Validators.required]),
-      country :     new FormControl('', []),
-      address :     new FormControl('', [Validators.required]),
-      zip_code :    new FormControl('', [Validators.required]),
-      emplyeeCode : new FormControl('', [Validators.required]),
-      gender:      new FormControl('true', [Validators.required]),
-      email :       new FormControl('', [Validators.required, Validators.email]),
+      userName :    ['',Validators.required],
+      first_name :  ['',Validators.required],
+      last_name :   ['',Validators.required],
+      contact :     ['',Validators.required],
+      country :     ['',],
+      address :     ['',Validators.required],
+      zip_code :    ['',Validators.required],
+      emplyeeCode : ['',Validators.required],
+      gender:       ['Others'],
+      roll:       ['Admin'],
+      email :       ['',Validators.required],
       // email : new FormControl('', [Validators.required, Validators.email]),
       // email : new FormControl('', [Validators.required, Validators.email]),
       // email : new FormControl('', [Validators.required, Validators.email]),
       // email : new FormControl('', [Validators.required, Validators.email]),
-      password :   new FormControl('',[Validators.required])
+      password :   ['',Validators.required],
+    // this.userEntryForm=new FormGroup({
+      
+    //   userName :    new FormControl('', [Validators.required]),
+    //   first_name :  new FormControl('', [Validators.required]),
+    //   last_name :   new FormControl('', [Validators.required]),
+    //   contact :     new FormControl('', [Validators.required]),
+    //   country :     new FormControl('', []),
+    //   address :     new FormControl('', [Validators.required]),
+    //   zip_code :    new FormControl('', [Validators.required]),
+    //   emplyeeCode : new FormControl('', [Validators.required]),
+    //   gender: new FormControl({value: 'true', disabled: false}, [Validators.required]),
+    //   email :       new FormControl('', [Validators.required, Validators.email]),
+    //   // email : new FormControl('', [Validators.required, Validators.email]),
+    //   // email : new FormControl('', [Validators.required, Validators.email]),
+    //   // email : new FormControl('', [Validators.required, Validators.email]),
+    //   // email : new FormControl('', [Validators.required, Validators.email]),
+    //   password :   new FormControl('',[Validators.required])
 
     })
   }
