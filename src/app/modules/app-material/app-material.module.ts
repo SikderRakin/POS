@@ -11,6 +11,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   
@@ -26,7 +29,13 @@ import {MatRadioModule} from '@angular/material/radio';
     MatToolbarModule,
     MatCheckboxModule,
     MatRadioModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatProgressSpinnerModule 
-  ]
+  ],
+  providers: [  
+    MatDatepickerModule,  
+  ],
 })
 export class AppMaterialModule { }

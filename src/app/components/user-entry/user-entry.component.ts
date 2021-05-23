@@ -9,7 +9,7 @@ import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 export class UserEntryComponent implements OnInit {
   userEntryForm:FormGroup;
   hide=true;
-
+  startDate = new Date(1990, 0, 1);
   getErrorMessage() {
     if (this.userEntryForm.get('email').hasError('required')) {
       return 'You must enter a value';
@@ -32,7 +32,8 @@ export class UserEntryComponent implements OnInit {
       zip_code :    ['',Validators.required],
       emplyeeCode : ['',Validators.required],
       gender:       ['Others'],
-      roll:       ['Admin'],
+      roll:         ['Admin'],
+      picker:         [''],
       email :       ['',Validators.required],
       // email : new FormControl('', [Validators.required, Validators.email]),
       // email : new FormControl('', [Validators.required, Validators.email]),
@@ -65,11 +66,47 @@ export class UserEntryComponent implements OnInit {
   }
 
 }
-// IsActive: [{ value: true, disabled: false },Validators.required]
-// <section class="example-section">
-// <label class="radioButton">Status:</label>
-// <mat-radio-group formControlName="IsActive">
-//   <mat-radio-button class="radioButton" [value]="true">Active</mat-radio-button>
-//   <mat-radio-button class="radioButton" [value]="false">Inactive</mat-radio-button>
-// </mat-radio-group>
-// </section>
+// initialization - No nested form controls
+// this._formGroup = new FormGroup({
+//   /* all other controls */
+//   password: new FormControl(['', [/* Validators - required, minLength, pattern (if any) */]]),
+//   confirm: new FormControl(['', [/* Validators - required */]])
+// });
+
+// // watch both the password fields
+// this._formGroup.get('password').valueChanges.pipe(
+//   tap(password => { this.validatePasswords(); })
+// ).subscribe();
+
+// this._formGroup.get('confirm').valueChanges.pipe(
+//   tap(password => { this.validatePasswords(); })
+// ).subscribe();
+
+// validatePasswords(): void {
+//   const confirmControl = this._formGroup.get('confirm')
+
+//   const password: string = this._formGroup.get('password').value;
+//   const confirm: string = confirmControl.value;
+
+
+//   // if confirm password is not entered
+//   if (!confirm) confirmControl.setErrors({ required: true });
+
+//   else {
+
+//     // if passwords do not match
+//     if (password !== confirm) {
+//       confirmControl.setErrors({
+//         passwordMismatch: {
+//           required: `(base64 encrypted) => ${btoa(password)}`,
+//           entered: `(base64 encrypted) => ${btoa(confirm)}`
+//         }
+//       });
+//     }
+
+//     // if all goes well
+//     else
+//       confirmControl.setErrors(null);
+
+//   }
+// }
