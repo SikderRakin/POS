@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
-
+import{userService} from '../../services/userService'
 @Component({
   selector: 'app-user-entry',
   templateUrl: './user-entry.component.html',
-  styleUrls: ['./user-entry.component.css']
+  styleUrls: ['./user-entry.component.css'],
+  providers:[userService]
 })
 export class UserEntryComponent implements OnInit {
   userEntryForm:FormGroup;
@@ -17,7 +18,7 @@ export class UserEntryComponent implements OnInit {
 
     return this.userEntryForm.get('email').hasError('email') ? 'Not a valid email' : '';
   }
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,private _userService:userService) { }
 
   ngOnInit(): void {
 
@@ -32,14 +33,12 @@ export class UserEntryComponent implements OnInit {
       zip_code :    ['',Validators.required],
       emplyeeCode : ['',Validators.required],
       gender:       ['Others'],
-      roll:         ['Admin'],
-      picker:         [''],
+      rollID:       ['Admin'],
+      DOB:          [''],
+      region:       [''],
       email :       ['',Validators.required],
-      // email : new FormControl('', [Validators.required, Validators.email]),
-      // email : new FormControl('', [Validators.required, Validators.email]),
-      // email : new FormControl('', [Validators.required, Validators.email]),
-      // email : new FormControl('', [Validators.required, Validators.email]),
-      password :   ['',Validators.required],
+      isActvie :    ['1',Validators.required],
+      password :    ['',Validators.required],
     // this.userEntryForm=new FormGroup({
       
     //   userName :    new FormControl('', [Validators.required]),
@@ -62,7 +61,7 @@ export class UserEntryComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.userEntryForm.value)
+    this._userService.userEntry(this.userEntryForm.value)
   }
 
 }

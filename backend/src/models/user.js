@@ -91,10 +91,10 @@ const userSchema=new mongoose.Schema({
     avatar:{
         type:Buffer
     },
-    IsActvie:{
+    isActvie:{
         type:Boolean
     },
-    RollID:{
+    rollID:{
         type:String
     },
     EmplyeeCode:{

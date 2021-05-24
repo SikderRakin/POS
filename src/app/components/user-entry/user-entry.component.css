@@ -2,12 +2,36 @@
 
 .container{
  display: flex;
- justify-content: space-around;
- flex-wrap: wrap;
+ justify-content:space-evenly ;
+
 
 
 
 }
+.mat-datepicker-content .mat-calendar {
+  width: 22px!important;
+  height: 300px!important;
+}
+
+/* .forstyle{
+ 
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+} */
 .mat-radio-button {
     margin: 0 12px;
+  }
+  .radio{
+    
+    margin-top: 16px;
+
   }
