@@ -1,116 +1,134 @@
 <body>
-  <div  class="forstyle">
+  <div  class="container rounded-full pt-10 shadow-2xl sm:mx-auto-0">
     <mat-card class="box">
       <mat-card-header>
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
-
+<div class="container rounded-full sm:mx-auto">
     <form [formGroup]="userEntryForm" >
+      <div class="grid grid-cols-1 gap-4  sm:grid-cols-3">
+        <div>  <mat-form-field class="full-width-input">
+    <mat-label>First Name</mat-label>
+    <input matInput name="first_name" placeholder="" formControlName="first_name">
+    <mat-error *ngIf="userEntryForm.get('first_name').invalid">First Name is Required</mat-error>
+    </mat-form-field>
+    </div>
+    <div> 
+      <mat-form-field class="full-width-input">
+        <mat-label>Middle Name</mat-label>
+        <input matInput name="last_name" placeholder="" formControlName="last_name">
+        <mat-error *ngIf="userEntryForm.get('last_name').invalid">Middle Name is Required</mat-error>
+      </mat-form-field>
+    </div>
+    
+    <div>  
+      <mat-form-field appearance="fill" class="full-width-input">
+        <mat-label>Choose a date-of-birth</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="DOB">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+        <mat-error *ngIf="userEntryForm.get('DOB').invalid && userEntryForm.get('DOB').touched">This field is Required</mat-error>
+      </mat-form-field>
+      </div>
+    
+      
+      <div> 
+        <section class="full-width-input">
+          <mat-label class="example-margin" >Gender:</mat-label>
+          <mat-radio-group formControlName="gender">
+               <mat-radio-button class="radioButton"  value="Male">Male</mat-radio-button>
+               <mat-radio-button class="radioButton" value="Female" >Female</mat-radio-button>
+               <mat-radio-button class="radioButton" value="Others" >Others</mat-radio-button>
+             </mat-radio-group>
+        </section>
+
+      </div>
+
+  
+
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Contact</mat-label>
+          <input matInput name="contact" placeholder="" formControlName="contact">
+          <mat-error *ngIf="userEntryForm.get('contact').invalid">Last Name is Required</mat-error>
+        </mat-form-field>
+      </div>
+    
+   
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Region</mat-label>
+          <input matInput name="region" placeholder="" formControlName="region">
+          <mat-error *ngIf="userEntryForm.get('region').invalid && userEntryForm.get('region').touched">Region is Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Country</mat-label>
+          <input matInput name="contact" placeholder="" formControlName="country">
         
-    <div class="container">
-            <mat-form-field class="full-width-input">
-              <mat-label>First Name</mat-label>
-              <input matInput name="first_name" placeholder="" formControlName="first_name">
-              <mat-error *ngIf="userEntryForm.get('first_name').invalid">First Name is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-              <mat-label>Middle Name</mat-label>
-              <input matInput name="last_name" placeholder="" formControlName="last_name">
-              <mat-error *ngIf="userEntryForm.get('last_name').invalid">Middle Name is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-              <mat-label>Contact</mat-label>
-              <input matInput name="contact" placeholder="" formControlName="contact">
-              <mat-error *ngIf="userEntryForm.get('contact').invalid">Last Name is Required</mat-error>
-            </mat-form-field>
+        </mat-form-field>
+    
+    
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Emplyee Code</mat-label>
+          <input matInput name="emplyeeCode" placeholder="" formControlName="emplyeeCode">
+          <mat-error *ngIf="userEntryForm.get('emplyeeCode').invalid && userEntryForm.get('emplyeeCode').touched">Emplyee Code is Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Zip Code</mat-label>
+          <input matInput name="zip_code" placeholder="" formControlName="zip_code">
+          <mat-error *ngIf="userEntryForm.get('zip_code').invalid">Last Name is Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>Address</mat-label>
+          <input matInput name="address" placeholder="" formControlName="address">
+          <mat-error *ngIf="userEntryForm.get('address').invalid">Address is Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div> 
+        <mat-form-field appearance="outline" class="full-width-input">
             
-          </div>
-          <div class="container">
-            
-          </div>
-          <div class="container">
-         
-            <mat-form-field class="full-width-input">
-              <mat-label>Region</mat-label>
-              <input matInput name="region" placeholder="" formControlName="region">
-              <mat-error *ngIf="userEntryForm.get('region').invalid && userEntryForm.get('region').touched">Region is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-              <mat-label>Country</mat-label>
-              <input matInput name="contact" placeholder="" formControlName="country">
-            
-            </mat-form-field>
-       
-            <mat-form-field class="full-width-input">
-              <mat-label>Address</mat-label>
-              <input matInput name="address" placeholder="" formControlName="address">
-              <mat-error *ngIf="userEntryForm.get('address').invalid">Address is Required</mat-error>
-            </mat-form-field>
-      
-            
-          </div>
-          <div class="container">
-            <mat-form-field class="full-width-input">
-              <mat-label>Zip Code</mat-label>
-              <input matInput name="zip_code" placeholder="" formControlName="zip_code">
-              <mat-error *ngIf="userEntryForm.get('zip_code').invalid">Last Name is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field class="full-width-input">
-              <mat-label>Emplyee Code</mat-label>
-              <input matInput name="emplyeeCode" placeholder="" formControlName="emplyeeCode">
-              <mat-error *ngIf="userEntryForm.get('emplyeeCode').invalid && userEntryForm.get('emplyeeCode').touched">Emplyee Code is Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="full-width-input">
-              <mat-label>Choose a date</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="DOB">
-              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
-              <mat-error *ngIf="userEntryForm.get('DOB').invalid && userEntryForm.get('DOB').touched">This field is Required</mat-error>
-            </mat-form-field>
-      
-            
-          </div> 
-          <div class="container"> 
-            <section class="full-width-input">
-              <mat-label class="example-margin" >Gender:</mat-label>
-              <mat-radio-group formControlName="gender">
-                   <mat-radio-button class="radioButton"  value="Male">Male</mat-radio-button>
-                   <mat-radio-button class="radioButton" value="Female" >Female</mat-radio-button>
-                   <mat-radio-button class="radioButton" value="Others" >Others</mat-radio-button>
-                 </mat-radio-group>
-            </section>
-           
-            <mat-form-field appearance="outline" class="full-width-input">
-            
-              <mat-select formControlName="rollID">
-                <mat-option value="Admin">Admin</mat-option>
-                <mat-option value="Sales">Sales</mat-option>
-                <mat-option value="Others">Others</mat-option>
-              </mat-select>
-              <mat-label><mat-icon>favorite</mat-icon> <b> Role</b> <i> label</i></mat-label>
-              <mat-hint *ngIf="!userEntryForm.get('rollID').valid && userEntryForm.get('rollID').touched" class="form-text text-muted">*Roll Type is required</mat-hint>
-            </mat-form-field>  
-            <section class="full-width-input ">
-              <mat-label class="example-margin" >Status:</mat-label>
-              <mat-radio-group formControlName="isActvie">
-                   <mat-radio-button class="radioButton"  value="1">Active</mat-radio-button>
-                   <mat-radio-button class="radioButton"  value="2">InActive</mat-radio-button>
-                  
-                 </mat-radio-group>
-            </section>
-          </div> 
-          <div class="container">   
-            <mat-form-field class="full-width-input">
-              <mat-label>User Name</mat-label>
-              <input matInput name="userName" placeholder="" formControlName="userName">
-              <mat-error *ngIf="userEntryForm.get('userName').invalid && userEntryForm.get('userName').touched">User Name is Required</mat-error>
-            </mat-form-field>    
-              <mat-form-field class="full-width-input">
+          <mat-select formControlName="rollID">
+            <mat-option value="Admin">Admin</mat-option>
+            <mat-option value="Sales">Sales</mat-option>
+            <mat-option value="Others">Others</mat-option>
+          </mat-select>
+          <mat-label><mat-icon>favorite</mat-icon> <b> Role</b> <i> label</i></mat-label>
+          <mat-hint *ngIf="!userEntryForm.get('rollID').valid && userEntryForm.get('rollID').touched" class="form-text text-muted">*Roll Type is required</mat-hint>
+        </mat-form-field>  
+      </div>
+      <div> 
+        <section class="full-width-input ">
+          <mat-label class="example-margin" >Status:</mat-label>
+          <mat-radio-group formControlName="isActvie">
+               <mat-radio-button class="radioButton"  value="1">Active</mat-radio-button>
+               <mat-radio-button class="radioButton"  value="2">InActive</mat-radio-button>
+              
+             </mat-radio-group>
+        </section>
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
+          <mat-label>User Name</mat-label>
+          <input matInput name="userName" placeholder="" formControlName=" user_name">
+          <mat-error *ngIf="userEntryForm.get('userName').invalid && userEntryForm.get('userName').touched">User Name is Required</mat-error>
+        </mat-form-field>
+      </div>
+      <div> 
+        <mat-form-field class="full-width-input">
           <mat-label>Enter your email</mat-label>
           <input matInput name="email" placeholder="pat@example.com" formControlName="email">
           <mat-error *ngIf="userEntryForm.get('email').invalid && userEntryForm.get('email').touched ">{{getErrorMessage()}}</mat-error>
            </mat-form-field>
-      
+      </div>
+      <div> 
         <mat-form-field class="full-width-input">
           <mat-label>Enter your password</mat-label>
           <input matInput name="password" formControlName="password" [type]="hide ? 'password' : 'text'">
@@ -120,24 +138,21 @@
           </button>
           <mat-error *ngIf="userEntryForm.get('password').invalid && userEntryForm.get('password').touched">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
-       
       </div>
+       
+    </div>
   
 
     </form>
-
+  </div>
     <app-button  (btnClick)="submit()" color="warn" text="LogIn"
     [isDisable]="!userEntryForm.valid"></app-button>
 
-      <!-- <div class="btn-login">
-        <app-button *ngIf="!isAuthenticated" (btnClick)="logIn()" color="warn" text="LogIn"
-          [isDisable]="!userEntryForm.valid"></app-button>
-        <app-button *ngIf="isAuthenticated" (btnClick)="logOut()" color="primary" text="LogOut" isDisable="false">
-        </app-button>
-        <app-button (btnClick)="readprofile()" color="primary" text="ReadProfile" isDisable="false"></app-button>
-      </div> -->
+     
     </mat-card>
   </div>
+         
+
 </body>
   
   <router-outlet></router-outlet>

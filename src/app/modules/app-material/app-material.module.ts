@@ -14,6 +14,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   
@@ -32,10 +33,9 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatStepperModule,
     MatProgressSpinnerModule 
   ],
-  providers: [  
-    MatDatepickerModule,  
-  ],
+ 
 })
 export class AppMaterialModule { }
