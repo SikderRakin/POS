@@ -17,6 +17,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HomeComponent } from './components/home/home.component';
 import { SideNavComponent } from './layouts/side-nav/side-nav.component';
 import { UserEntryComponent } from './components/user-entry/user-entry.component';
+import { ItemEntryComponent } from './components/item-entry/item-entry.component';
 
 
 
@@ -29,7 +30,8 @@ import { UserEntryComponent } from './components/user-entry/user-entry.component
     SpinnerComponent,
     HomeComponent,
     SideNavComponent,
-    UserEntryComponent
+    UserEntryComponent,
+    ItemEntryComponent
   ],
   imports: [
     BrowserModule,

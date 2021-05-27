@@ -5,6 +5,7 @@ import { HomeComponent } from '../../components/home/home.component';
 import { AuthGurad } from '../../auth/auth.guard';
 import { SideNavComponent } from '../../layouts/side-nav/side-nav.component';
 import { UserEntryComponent } from '../../components/user-entry/user-entry.component';
+import { ItemEntryComponent } from "../../components/item-entry/item-entry.component";
 
 const appRoute: Routes = [
   {path:'', redirectTo:'/home',pathMatch:'full'},
@@ -18,7 +19,10 @@ const appRoute: Routes = [
     },
     {
       path:'user-entry',component:UserEntryComponent
-    }
+    },
+    {
+      path:'item-entry',component:ItemEntryComponent
+    },
 ]
 },
 {    path: '**', component: LoginComponent}
