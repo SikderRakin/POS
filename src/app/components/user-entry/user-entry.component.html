@@ -139,7 +139,14 @@
           <mat-error *ngIf="userEntryForm.get('password').invalid && userEntryForm.get('password').touched">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
       </div>
-       
+       <div>
+        <app-button type="button" (btnClick)="openImg.click()" color="warn" text="Upload Image"></app-button>
+        <input type="file" #openImg (change)="pickedImg($event)">
+       </div>
+         
+<div class="imagePre h-30" *ngIf="imagePreview != '' && imagePreview && userEntryForm.get('image').valid">
+  <img class="h-full" [src]="imagePreview" [alt]="">
+</div>
     </div>
   
 

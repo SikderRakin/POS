@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormControl, FormGroup, Validators,FormBuilder} from '@angular/forms';
 import{userService} from '../../services/userService'
+import{mimeType} from './mime-type.validator'
 @Component({
   selector: 'app-user-entry',
   templateUrl: './user-entry.component.html',
@@ -10,6 +11,7 @@ import{userService} from '../../services/userService'
 export class UserEntryComponent implements OnInit {
   userEntryForm:FormGroup;
   hide=true;
+  imagePreview:string;
   startDate = new Date(1990, 0, 1);
   getErrorMessage() {
     if (this.userEntryForm.get('email').hasError('required')) {
@@ -24,7 +26,7 @@ export class UserEntryComponent implements OnInit {
 
     this.userEntryForm=this._formBuilder.group({
       
-      user_name :    ['',Validators.required],
+      user_name :   ['',Validators.required],
       first_name :  ['',Validators.required],
       last_name :   ['',Validators.required],
       contact :     ['',Validators.required],
@@ -39,6 +41,7 @@ export class UserEntryComponent implements OnInit {
       email :       ['',Validators.required],
       isActvie :    ['1',Validators.required],
       password :    ['',Validators.required],
+      image :       [null,Validators.required,mimeType],
     // this.userEntryForm=new FormGroup({
       
     //   userName :    new FormControl('', [Validators.required]),
@@ -62,6 +65,18 @@ export class UserEntryComponent implements OnInit {
 
   submit(){
     this._userService.userEntry(this.userEntryForm.value)
+  }
+  pickedImg(event:Event){
+    const file=(event.target as HTMLInputElement).files[0]
+    this.userEntryForm.patchValue({image:file})
+    this.userEntryForm.get('image').updateValueAndValidity();
+    const reader =new FileReader();
+    reader.onload=()=>{
+      this.imagePreview= reader.result as string;
+    }
+      reader.readAsDataURL(file)
+       console.log(File);
+
   }
 
 }
