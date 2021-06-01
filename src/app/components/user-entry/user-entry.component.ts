@@ -73,9 +73,10 @@ export class UserEntryComponent implements OnInit {
     const reader =new FileReader();
     reader.onload=()=>{
       this.imagePreview= reader.result as string;
+      console.log(reader.result);
     }
       reader.readAsDataURL(file)
-       console.log(File);
+      
 
   }
 

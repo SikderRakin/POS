@@ -88,8 +88,8 @@ const userSchema=new mongoose.Schema({
             required:true
         }
     }],
-    avatar:{
-        type:Buffer
+    imagePath:{
+        type:String
     },
     isActvie:{
         type:Boolean

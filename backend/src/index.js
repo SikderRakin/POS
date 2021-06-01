@@ -1,4 +1,5 @@
 const express=require("express")
+const path=require("path")
 require("./db/mongoose")
 
 const userRouter=require("./routers/user_router")
@@ -14,6 +15,8 @@ app.use(cors())
 app.use(userRouter)
 app.use(taskRouter)
 
+//image upload
+app.use("/Img",express.static(path.join("backend/Img")))
 
 module.exports=app
 

@@ -4,8 +4,51 @@ const router=new express.Router()
 const auth=require('../middleware/auth')
 const multer=require("multer")
 const sharp=require("sharp")
-router.post('/users', async (req,res)=>{
-    const me=new User(req.body)
+
+//Img upload
+//  const upload=multer({
+//    limits:{
+//       fileSize:1000000000
+//    },
+//    fileFilter(req,file,cb){
+//       if(!file.originalname.match(/\.(jpeg|jpg|png)$/)){
+//          return cb(new Error("Please upload a Word file"))
+//       }
+//       cb(undefined,true)
+//    }
+// })
+const MiME_TYPE_MAP={
+   "image/png":"png",
+   "image/jpeg":"jpg",
+   "image/jpg":"jpg"
+   
+}; 
+
+const storage = multer.diskStorage({
+   destination: function (req, file, cb) {
+      const isValid=MiME_TYPE_MAP[file.mimetype];
+      let error=new Error("Invalid mime type");
+      if(isValid){
+         error=null
+      }
+     cb(error, 'backend/Img')
+   },
+   filename: function (req, file, cb) {
+    const name=file.originalname.toLowerCase().split('').join('-');
+    const extention=MiME_TYPE_MAP[file.mimetype];
+    cb(null, name+'-'+Date.now()+'.'+extention);
+
+   }
+ })
+  
+ const userAvatar = multer({ storage: storage })
+
+router.post('/users',userAvatar.single("image") ,async (req,res)=>{
+   const url=req.protocol + "://"+req.get("host")
+   req.body.imagePath=url + "/Img/" + req.file.filename
+   console.log(req.body)
+   const me=new User(req.body)
+
     try {
   
        await me.save()
@@ -134,51 +177,39 @@ await me.save()
  
  
  })
- //Img upload
- const upload=multer({
-   limits:{
-      fileSize:1000000000
-   },
-   fileFilter(req,file,cb){
-      if(!file.originalname.match(/\.(jpeg|jpg|png)$/)){
-         return cb(new Error("Please upload a Word file"))
-      }
-      cb(undefined,true)
-   }
-})
-
+ 
 //Post Avatar
-router.post('/users/me/avatar',auth,upload.single('avatar'),async(req,res)=>{
-   const buffer= await sharp(req.file.buffer).resize({width:250,height:250}).png().toBuffer()
-  req.user.avatar=buffer
-  await req.user.save() 
-  res.send()
-},(error,req,res,next)=>{
-  res.status(400).send({error:error.message})
-})
+// router.post('/users/me/avatar',auth,upload.single('avatar'),async(req,res)=>{
+//    const buffer= await sharp(req.file.buffer).resize({width:250,height:250}).png().toBuffer()
+//   req.user.avatar=buffer
+//   await req.user.save() 
+//   res.send()
+// },(error,req,res,next)=>{
+//   res.status(400).send({error:error.message})
+// })
 
-//Delete avatar
-router.delete('/users/me/avatar',auth,upload.single('avatar'),async(req,res)=>{
-   req.user.avatar=undefined
-   await req.user.save() 
-   res.send()
- },(error,req,res,next)=>{
-   res.status(400).send({error:error.message})
- })
+// //Delete avatar
+// router.delete('/users/me/avatar',auth,upload.single('avatar'),async(req,res)=>{
+//    req.user.avatar=undefined
+//    await req.user.save() 
+//    res.send()
+//  },(error,req,res,next)=>{
+//    res.status(400).send({error:error.message})
+//  })
 
- //Get Avatar By Id
- router.get('/users/:id/avatar',upload.single('avatar'),async(req,res)=>{
-    try {
-      const user= await User.findById(req.params.id)
-      if(!user | !user.avatar){
-         throw new Error("Cant find")
-      }
-      res.set('Content-Type','image/png')
-      res.send(user.avatar)
-    } catch (e) {
-      res.status(400).send({error:error.message})
-    }
+//  //Get Avatar By Id
+//  router.get('/users/:id/avatar',upload.single('avatar'),async(req,res)=>{
+//     try {
+//       const user= await User.findById(req.params.id)
+//       if(!user | !user.avatar){
+//          throw new Error("Cant find")
+//       }
+//       res.set('Content-Type','image/png')
+//       res.send(user.avatar)
+//     } catch (e) {
+//       res.status(400).send({error:error.message})
+//     }
 
- }
- )
+//  }
+//  )
  module.exports=router
