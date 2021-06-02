@@ -66,10 +66,16 @@ export class UserEntryComponent implements OnInit {
   submit(){
     this._userService.userEntry(this.userEntryForm.value)
   }
+  
+  // Image Upload
   pickedImg(event:Event){
+    // For inserting into Form
+
     const file=(event.target as HTMLInputElement).files[0]
     this.userEntryForm.patchValue({image:file})
     this.userEntryForm.get('image').updateValueAndValidity();
+
+    // For previewing Image
     const reader =new FileReader();
     reader.onload=()=>{
       this.imagePreview= reader.result as string;

@@ -1,18 +1,16 @@
 <body>
-    <div class="container py-10">
-        <div class="grid grid-cols-6">
+    <div class="container pt-10 shadow-2xl sm:mx-auto">
+     
            
-            <div class="col-span-5 px-8 rounded-full">
-                <div class="">
-            <form [formGroup]="itemEntryForm">
-                <div class="grid grid-flow-row gap-4">
-              <div class="grid grid-cols-1 gap-4  sm:grid-cols-2">
-                <div> 
-                     <mat-label>Type* :</mat-label>
-                    </div>
+           
+             
+            <form [formGroup]="itemEntryForm" (submit)="onSaveitem()">
+                <div class="grid grid-cols-1 gap-4  sm:grid-cols-3">
+           
+                
                 <div>
                 <section class="full-width-input ">
-                   
+                    <mat-label>Type* :</mat-label>
                     <mat-radio-group formControlName="type">
                          <mat-radio-button class="radioButton"  value="Goods">Goods</mat-radio-button>
                          <mat-radio-button class="radioButton"  value="Service">Service</mat-radio-button>
@@ -21,32 +19,29 @@
                   </section>
                 </div>
             
-                <div class="py-7 "> 
-                    <mat-label >Item Group Name* :</mat-label>
-                </div>
+                
                 <div> 
                     <mat-form-field class="full-width-input">
-                   
+                        <mat-label >Item Group Name* :</mat-label>
                     <input matInput name="item_name" placeholder="Item Group name" formControlName="item_name">
                     <mat-error *ngIf="itemEntryForm.get('item_name').invalid">Item Group name</mat-error>
                     </mat-form-field>
                 </div>
-                <div class="py-7 "> 
-                    <mat-label >Description* :</mat-label>
-                </div>
+               
                 <div> 
+                   
                     <mat-form-field appearance="fill">
+                      
                         <mat-label>Description*</mat-label>
                         <textarea matInput formControlName="description" matTextareaAutosize matAutosizeMinRows=4 matAutosizeMaxRows=10></textarea>
                       </mat-form-field>
                 </div>
-                <div>
-                <div class="grid grid-cols-2 gap-4"> 
-                    <div class="py-7 "> 
-                        <mat-label >Unit*  :</mat-label>
-                    </div>
+              
+                
+                   
                     <div> 
-                        <mat-form-field appearance="outline" class="full-width-input">  
+                        <mat-form-field appearance="outline" class="full-width-input"> 
+                            <mat-label >Unit*  :</mat-label>
                           <mat-select formControlName="unit">
                             <mat-option value="pc">PC</mat-option>
                             <mat-option value="roll">Roll</mat-option>
@@ -57,15 +52,14 @@
                         </mat-form-field>  
                       </div>
                       
-                </div>
+             
                
-            </div>
-            <div>  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> 
-                <div class="py-7  px-3"> 
-                    <mat-label >Tax  :</mat-label>
-                </div>
+          
+         
+             
                 <div> 
                     <mat-form-field appearance="outline" class="full-width-input">  
+                        <mat-label >Tax  :</mat-label>
                       <mat-select formControlName="tax">
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
@@ -75,15 +69,14 @@
               
                     </mat-form-field>  
                   </div>
-            </div>
-        </div>
-        <div>
-            <div class="grid grid-cols-2 gap-4"> 
-                <div class="py-7"> 
-                    <mat-label >Manufacturer  :</mat-label>
-                </div>
+          
+       
+       
+            
+                
                 <div> 
                     <mat-form-field appearance="outline" class="full-width-input">  
+                        <mat-label >Manufacturer  :</mat-label>
                         <mat-select formControlName="manufacturer">
                         <mat-option  *ngFor="let tax of taxes" [value]="tax">{{ tax.name }}</mat-option>
                         <hr>
@@ -97,15 +90,13 @@
                     </mat-form-field>  
                   </div>
                   
-            </div>
+            
+  
+     
            
-        </div>
-        <div>  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4"> 
-            <div class="py-7  px-3"> 
-                <mat-label >Brand  :</mat-label>
-            </div>
             <div> 
                 <mat-form-field appearance="outline" class="full-width-input">  
+                    <mat-label >Brand  :</mat-label>
                     <mat-select formControlName="brand">
                     <mat-option  *ngFor="let tax of taxes" [value]="tax">{{ tax.name }}</mat-option>
                     <hr>
@@ -118,24 +109,56 @@
           
                 </mat-form-field>  
               </div>
+              <div> 
+                <mat-form-field appearance="outline" class="full-width-input">  
+                    <mat-label >Attribute  :</mat-label>
+                    <mat-select (selectionChange)="getAttr($event.value)">
+                    <mat-option  *ngFor="let attribute of attributes" [value]="attribute.name">{{ attribute.name }}</mat-option>
+                    
+                </mat-select>
+               
+                  <mat-label><mat-icon>branding_watermark</mat-icon> <b>*Attribute </b> <i> label</i></mat-label>
+          
+                </mat-form-field>  
+              </div>
+              <div> 
+                <mat-form-field class="full-width-input">
+                <mat-label >Attribute Value :</mat-label>
+                <input matInput name="item_attribute" placeholder="Color ,Storage" formControlName="item_attribute">
+                <mat-error *ngIf="itemEntryForm.get('item_attribute').invalid">Attribute</mat-error>
+                </mat-form-field>
+            </div>
+            <div> 
+                <mat-form-field class="full-width-input">
+                <mat-label >Attribute2 :</mat-label>
+                <input matInput name="item_attribute2" placeholder="Color ,Storage" formControlName="item_attribute2">
+                <mat-error *ngIf="itemEntryForm.get('item_attribute2').invalid">Attribute</mat-error>
+                </mat-form-field>
+            </div>
+      
+              <div class="pt-2">
+                
+                <app-button type="button" (btnClick)="itemImage.click()" color="warn" text="Upload Image"></app-button>
+                <input type="file" (change)="pickedImg($event)" #itemImage>
+            </div>
+
+              <div class="pt-2" *ngIf="imagePreview != '' && imagePreview && itemEntryForm.get('image').valid">
+                
+               <img class="h-15 w-6/12" [src]="imagePreview" alt="">
+            </div>
+            
+            
         </div>
-    </div>
-            </div>
-            </div>
-             
+        <app-button   color="warn" text="Submit"
+        [isDisable]="!itemEntryForm.valid"></app-button>
+    
             </form>
-        </div>
+        
             </div>
          
-            <div class="...">
-                
-                
-           <img src="http://localhost:3000/Img/g-g-e-z-.-p-n-g-1622542975621.png" alt="">
-            </div>
+            
             
 
 
-    </div>
-    
-</div>
+
 </body>
