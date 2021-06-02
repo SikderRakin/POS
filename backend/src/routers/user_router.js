@@ -92,6 +92,16 @@ router.post('/users',userAvatar.single("image") ,async (req,res)=>{
     //    res.status(400).send(e)
     //   })
    })
+
+   router.get('/user', async(req,res) =>{
+      try{
+         const user = await User.find({})
+         res.send(user)
+      }catch{
+         res.status(500).send('server error')
+      }
+   })
+
    router.post('/user/login',async (req,res)=>{
       // findByCredentials
       try {

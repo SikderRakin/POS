@@ -64,7 +64,7 @@ const userSchema=new mongoose.Schema({
             throw new Error("A positive number is must") 
          }
      }},
-     country:{
+    country:{
         type:String,
     },
     region:{
@@ -117,18 +117,47 @@ userSchema.virtual('task',{
 
 })
 
-//Hide private Data
+//Hide private Data Default
+// userSchema.methods.toJSON=function(){
+
+//    const user=this
+//    const userObject=user.toObject()
+//    delete userObject.password
+//    delete userObject.tokens
+//    delete userObject.first_name
+//    delete userObject.last_name
+
+
+
+// // add IsActvie , RollID, EmplyeeCode, here to hide them from view
+
+//    return userObject
+// }
+
+//Hide data for user table
 userSchema.methods.toJSON=function(){
 
-   const user=this
-   const userObject=user.toObject()
-   delete userObject.password
-   delete userObject.tokens
+    const user=this
+    const userObject=user.toObject()
+    delete userObject.password
+    delete userObject.tokens
+    delete userObject.first_name
+    delete userObject.last_name
+    delete userObject.DOB
+    delete userObject.country
+    delete userObject.region
+    delete userObject.address
+    delete userObject.zip_code
+    delete userObject.gender
+    delete userObject.imagePath
 
-// add IsActvie , RollID, EmplyeeCode, here to hide them from view
-
-   return userObject
-}
+ 
+ 
+ 
+ // add IsActvie , RollID, EmplyeeCode, here to hide them from view
+ 
+    return userObject
+ }
 
 //Token Generate
 userSchema.methods.generateAuthToken= async function(){
