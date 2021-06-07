@@ -1,7 +1,8 @@
-import { rendererTypeName } from '@angular/compiler';
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { from } from 'rxjs';
+import {ItemServiceService} from '../../services/item-service.service'
 @Component({
   selector: 'app-item-entry',
   templateUrl: './item-entry.component.html',
@@ -10,10 +11,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ItemEntryComponent implements OnInit {
   itemEntryForm:FormGroup;
   imagePreview:string;
-
+  dataSource=[];
+  a:string
   taxes = [{name:"tax"},{name:"tax2"}]
   attributes = [{name:"color"},{name:"storage"}]
-  constructor(private _formbuilder:FormBuilder) { }
+  displayedColumns: string[] = ['type', 'name', 'description', 'unit'];
+
+  constructor(private _formbuilder:FormBuilder,private _itemSs:ItemServiceService) { }
 
   ngOnInit(): void {
     this.itemEntryForm=this._formbuilder.group({
@@ -24,14 +28,25 @@ export class ItemEntryComponent implements OnInit {
       tax            :     ['',],
       manufacturer   :     ["",],   
       brand          :     ['',],
-      item_attribute :     ['',],
-      item_attribute2:     ['',],
+      color          :     ['',],
+      storage        :     ['',],
     
       image          :     ['',],
-
+      other          :     ['',],
+      price          :     [0,],
+      quantity       :     [0,],
+      
     })
   }
+  addItem(){
+    this.dataSource = [...this.dataSource, this.itemEntryForm.value]
+  // this.dataSource.push(this.itemEntryForm.value)
+  // this.a=JSON.stringify(this.dataSource)
+  // this._itemSs.itemEntry(this.dataSource);
+  // this.dataSource=this.itemEntryForm.value
+  console.log(this.dataSource)
 
+  }
   addManufacture(){
     alert("added")
   }

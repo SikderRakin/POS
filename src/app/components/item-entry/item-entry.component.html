@@ -123,19 +123,42 @@
               </div>
               <div> 
                 <mat-form-field class="full-width-input">
-                <mat-label >Attribute Value :</mat-label>
-                <input matInput name="item_attribute" placeholder="Color ,Storage" formControlName="item_attribute">
-                <mat-error *ngIf="itemEntryForm.get('item_attribute').invalid">Attribute</mat-error>
+                <mat-label >Color</mat-label>
+                <input matInput name="color" placeholder="Color ,Storage" formControlName="color">
+               
                 </mat-form-field>
             </div>
             <div> 
                 <mat-form-field class="full-width-input">
-                <mat-label >Attribute2 :</mat-label>
-                <input matInput name="item_attribute2" placeholder="Color ,Storage" formControlName="item_attribute2">
-                <mat-error *ngIf="itemEntryForm.get('item_attribute2').invalid">Attribute</mat-error>
+                <mat-label >Storage</mat-label>
+                <input matInput name="item_attribute2" placeholder="Storage" formControlName="storage">
+               
                 </mat-form-field>
             </div>
-      
+            <div> 
+              <mat-form-field class="full-width-input">
+              <mat-label >Others</mat-label>
+              <input matInput name="item_attribute2" placeholder="Weight,Variants etc" formControlName="other">
+             
+              </mat-form-field>
+          </div>
+
+          <div> 
+            <mat-form-field class="full-width-input">
+            <mat-label >Price</mat-label>
+            <input matInput type="number" name="price" placeholder="Price" formControlName="price">
+           
+            </mat-form-field>
+        </div>
+        <div> 
+          <mat-form-field class="full-width-input">
+          <mat-label >Quantity</mat-label>
+          <input matInput type="number" name="quantity" placeholder="Quantity" formControlName="quantity">
+         
+          </mat-form-field>
+      </div>
+    
+          
               <div class="pt-2">
                 
                 <app-button type="button" (btnClick)="itemImage.click()" color="warn" text="Upload Image"></app-button>
@@ -146,17 +169,50 @@
                 
                <img class="h-15 w-6/12" [src]="imagePreview" alt="">
             </div>
-            
+
+            <app-button type="button" (btnClick)="addItem()" color="warn" text="Add"></app-button>
             
         </div>
         <app-button   color="warn" text="Submit"
         [isDisable]="!itemEntryForm.valid"></app-button>
     
             </form>
-        
+            
+            
             </div>
          
+            <table mat-table [dataSource]="dataSource"  class="mat-elevation-z8 mx-auto">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
             
+              <!-- Position Column -->
+              <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+              </ng-container>
+            
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> {{element.item_name }} </td>
+              </ng-container>
+            
+              <!-- Weight Column -->
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef>Description</th>
+                <td mat-cell *matCellDef="let element"> {{element.description }} </td>
+              </ng-container>
+            
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="unit">
+                <th mat-header-cell *matHeaderCellDef>Unit </th>
+                <td mat-cell *matCellDef="let element">{{element.unit}} </td>
+              </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
             
 
 
