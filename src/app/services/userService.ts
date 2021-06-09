@@ -20,11 +20,11 @@ export class userService {
 
 //const body = JSON.stringify(userData);
 
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        })
-      };
+      // const httpOptions = {
+      //   headers: new HttpHeaders({
+      //     'Content-Type': 'application/json'
+      //   })
+      // };
         this.httpClient.post<any>(`http://localhost:3000/users`, formData)
             .subscribe(resData => {
                this.userData=resData;

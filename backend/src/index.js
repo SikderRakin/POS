@@ -4,6 +4,7 @@ require("./db/mongoose")
 
 const userRouter=require("./routers/user_router")
 const taskRouter=require("./routers/task_router")
+const itementryRouter=require("./routers/itementry_router")
 const cors = require('cors')
 const app=express()
 
@@ -14,6 +15,7 @@ app.use(cors())
 //Returns middleware that only parses JSON and only looks at requests where the Content-Type header matches the type option. This parser accepts any Unicode encoding of the body and supports automatic inflation of gzip and deflate encodings.
 app.use(userRouter)
 app.use(taskRouter)
+app.use(itementryRouter)
 
 //image upload
 app.use("/Img",express.static(path.join("backend/Img")))

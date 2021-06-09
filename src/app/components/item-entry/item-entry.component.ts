@@ -26,7 +26,7 @@ export class ItemEntryComponent implements OnInit {
       description    :     ['',Validators.required],
       unit           :     ['pc',Validators.required],
       tax            :     ['',],
-      manufacturer   :     ["",],   
+      manufacturer   :     ['',],   
       brand          :     ['',],
       color          :     ['',],
       storage        :     ['',],
@@ -35,7 +35,8 @@ export class ItemEntryComponent implements OnInit {
       other          :     ['',],
       price          :     [0,],
       quantity       :     [0,],
-      
+      item_code      :     ['',Validators.required],
+      isActive       :     ['true',]
     })
   }
   addItem(){
@@ -50,8 +51,8 @@ export class ItemEntryComponent implements OnInit {
   addManufacture(){
     alert("added")
   }
-  onSaveitem(){
-    console.log( this.itemEntryForm.value)
+  onSubmit(){
+   this._itemSs.itemEntry(this.itemEntryForm.value)
   }
 
   getAttr(event:Event){

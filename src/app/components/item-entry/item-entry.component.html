@@ -4,7 +4,7 @@
            
            
              
-            <form [formGroup]="itemEntryForm" (submit)="onSaveitem()">
+            <form [formGroup]="itemEntryForm" (ngSubmit)="onSubmit()">
                 <div class="grid grid-cols-1 gap-4  sm:grid-cols-3">
            
                 
@@ -59,7 +59,7 @@
              
                 <div> 
                     <mat-form-field appearance="outline" class="full-width-input">  
-                        <mat-label >Tax  :</mat-label>
+                      
                       <mat-select formControlName="tax">
                         <mat-option value="1">1</mat-option>
                         <mat-option value="2">2</mat-option>
@@ -76,9 +76,9 @@
                 
                 <div> 
                     <mat-form-field appearance="outline" class="full-width-input">  
-                        <mat-label >Manufacturer  :</mat-label>
+                      
                         <mat-select formControlName="manufacturer">
-                        <mat-option  *ngFor="let tax of taxes" [value]="tax">{{ tax.name }}</mat-option>
+                        <mat-option  *ngFor="let tax of taxes" [value]="tax.name">{{ tax.name }}</mat-option>
                         <hr>
                         <div class="">
                             <button type="button" class="btn btn-primary" (click)="addManufacture()">Add</button>
@@ -96,7 +96,7 @@
            
             <div> 
                 <mat-form-field appearance="outline" class="full-width-input">  
-                    <mat-label >Brand  :</mat-label>
+                   
                     <mat-select formControlName="brand">
                     <mat-option  *ngFor="let tax of taxes" [value]="tax">{{ tax.name }}</mat-option>
                     <hr>
@@ -111,7 +111,7 @@
               </div>
               <div> 
                 <mat-form-field appearance="outline" class="full-width-input">  
-                    <mat-label >Attribute  :</mat-label>
+                   
                     <mat-select (selectionChange)="getAttr($event.value)">
                     <mat-option  *ngFor="let attribute of attributes" [value]="attribute.name">{{ attribute.name }}</mat-option>
                     
@@ -121,6 +121,13 @@
           
                 </mat-form-field>  
               </div>
+              <div> 
+                <mat-form-field class="full-width-input">
+                <mat-label >Item Code</mat-label>
+                <input matInput name="item_code" placeholder="Item Code" formControlName="item_code">
+               
+                </mat-form-field>
+            </div>
               <div> 
                 <mat-form-field class="full-width-input">
                 <mat-label >Color</mat-label>
@@ -158,7 +165,16 @@
           </mat-form-field>
       </div>
     
-          
+      <div>
+        <section class="full-width-input ">
+            <mat-label>Is Active* :</mat-label>
+            <mat-radio-group formControlName="isActive">
+                 <mat-radio-button class="radioButton"  value="true">Active</mat-radio-button>
+                 <mat-radio-button class="radioButton"  value="false">Inactive</mat-radio-button>
+                
+               </mat-radio-group>
+          </section>
+        </div>
               <div class="pt-2">
                 
                 <app-button type="button" (btnClick)="itemImage.click()" color="warn" text="Upload Image"></app-button>

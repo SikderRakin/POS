@@ -3,6 +3,7 @@ const validator=require('validator');
 const  bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const Task = require('./task');
+const ItemEntry = require('./itementry');
 
 
 const userSchema=new mongoose.Schema({
@@ -116,6 +117,12 @@ userSchema.virtual('task',{
    foreignField:'owner'
 
 })
+userSchema.virtual('itementry',{
+    ref: 'ItemEntry',
+    localField:'_id',
+    foreignField:'owner'
+ 
+ })
 
 //Hide private Data Default
 // userSchema.methods.toJSON=function(){
