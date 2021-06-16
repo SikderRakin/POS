@@ -69,8 +69,7 @@ const userSchema=new mongoose.Schema({
         type:String,
     },
     region:{
-        type:String,
-        required: true,
+        type:String
     },
     address:{
         type:String,
