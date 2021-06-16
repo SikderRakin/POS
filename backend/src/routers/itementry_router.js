@@ -38,6 +38,7 @@ router.post('/itementry',itemImg.single("image") ,auth,async (req,res)=>{
    console.log(req.body)
    if (!req.file){
       req.body.imagePath=""
+      
    }
    else{
       const url=req.protocol + "://"+req.get("host")
