@@ -1,0 +1,78 @@
+<div *ngIf="addFilter" class="grid grid-cols-1 gap-3  sm:grid-cols-4">
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Form Date</mat-label>
+      <input matInput [matDatepicker]="Form">
+      <mat-datepicker-toggle matSuffix [for]="Form"></mat-datepicker-toggle>
+      <mat-datepicker #Form></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>To Date</mat-label>
+      <input matInput [matDatepicker]="To">
+      <mat-datepicker-toggle matSuffix [for]="To"></mat-datepicker-toggle>
+      <mat-datepicker #To></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+    </mat-form-field>
+  </div>
+
+
+</div>
+
+<mat-table [dataSource]="rows" matSort matSortActive="symbol" matSortDirection="asc">
+
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columns; let i = index;">
+    <span *ngIf="i === 0 && isSelect">
+      <mat-header-cell *matHeaderCellDef>
+        <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+        </mat-checkbox>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+        </mat-checkbox>
+      </mat-cell>
+    </span>
+    <span *ngIf="i === 0 && isSerial">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        SN
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element; let sn=index">
+        {{sn+1}}
+      </mat-cell>
+    </span>
+    <span *ngIf="i !== 0 && i<colLength">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{column | fieldToDisplay}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element;">
+        {{element[column]}}
+      </mat-cell>
+    </span>
+
+    <span *ngIf="i >=colLength && isButton">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        Action
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="see(element)">Reset </button>
+        <button mat-raised-button>Reset </button>
+      </mat-cell>
+    </span>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columns; sticky: true;"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns;" (click)="selection.toggle(row)"></mat-row>
+
+</mat-table>
+<div *ngIf="ispaginator">
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>
+<button id="hide" mat-raised-button color="accent" (click)="add()">Get Checked Items</button>

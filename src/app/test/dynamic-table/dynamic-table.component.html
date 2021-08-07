@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form>
+    <h1 id="h1Table">Dynamic Table</h1>
+    <div class="flex flex-row  my-10">
+      <div class="mx-8">
+        <!-- <button (click)="clickFunction()">Click Me</button> -->
+        <button mat-raised-button class="mx-8" (click)="tableInsertCol()">Add Column</button>
+      </div>
+      <div class="mx-8">
+        <button mat-raised-button (click)="tableRemoveCol()">Remove Column</button>
+      </div>
+      <div class="mx-8">
+        <button mat-raised-button (click)="tableRemoveRow()">Remove Row</button>
+      </div>
+      <div class="mx-8">
+        <button mat-raised-button id="btnSelect" title="Select Able" (click)="tableInputDisable()">SelectAbl</button>
+      </div>
+    </div>
+    <!-- <div id=" result "> </div>
+     -->
+    <!-- <div>
+            <table id="person" border="1">
+                <thead>
+                    <tr>
+                        <th>Sl.</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody id="pBody">
+                    <tr>
+                        <td>1</td>
+                        <td>Shuvo</td>
+                        <td>Manikgonj</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Abir</td>
+                        <td>Vola</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> -->
+
+
+    <table class="table-auto" id="mofiz" style="width: 100% " (click)="select($event)" border="1 ">
+      <thead>
+        <tr>
+          <th *ngFor="let h of ItemTableHeaders; let i=index " class="mofizth t-cell-center">
+            {{h}}
+          </th>
+        </tr>
+      </thead>
+      <tbody id="tBody">
+        <tr class="tr" *ngFor="let row of ItemTableDataRow; let i=index ">
+          <td class="mofiztd t-cell-center " *ngFor="let item of row; let i=index">
+
+            <!-- <input *ngIf="i > 4" [ngOnInit]="GetItemValueForAmountCalculation(item, row, i)" class="t-cell-center" [(ngModel)]="row[i]" [ngModelOptions]="{standalone: true}" /> -->
+            <input matInput *ngIf="i > 4" (input)="GetItemValueForAmountCalculation()" [(ngModel)]="row[i]"
+              [ngModelOptions]="{standalone: true}" />
+
+            <span *ngIf="i<5" class="t-cell-center ">
+              {{item}}
+            </span>
+
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th class="mofizth t-cell-center" *ngFor="let f of ItemTableFooter; let i=index ">{{f}}</th>
+        </tr>
+      </tfoot>
+
+    </table>
+
+
+  </form>
+
+</body>
+
+</html>
+
+<!-- <mat-table [dataSource]="rows" matSort matSortActive="symbol" matSortDirection="asc">
+
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columns; let i = index;">
+
+    <span *ngIf="i === 0 ">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        SN
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element; let sn=index">
+        {{sn+1}}
+      </mat-cell>
+    </span>
+    <span *ngIf="i !== 0 && i<colLenght-3">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{column | fieldToDisplay}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element;">
+        {{element[column]}}
+      </mat-cell>
+
+    </span>
+    <span *ngIf="i !== 0 && i>=colLenght-1">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{column | fieldToDisplay}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field floatLabel="never">
+          <input matInput placeholder [value]="element[column]" [(ngModel)]="element[column]">
+        </mat-form-field>
+      </mat-cell>
+    </span>
+    <span *ngIf="i !== 0 && i>=colLenght-2">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{column | fieldToDisplay}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field floatLabel="never">
+          <input matInput placeholder [value]="element[column]" (input)="add(i)" [(ngModel)]="element[column]">
+        </mat-form-field>
+      </mat-cell>
+    </span>
+    <span *ngIf="i !== 0 && i>=colLenght-3">
+      <mat-header-cell mat-sort-header *matHeaderCellDef>
+        {{column | fieldToDisplay}}
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-form-field floatLabel="never">
+          <input matInput placeholder [value]="element[column]" (change)="add(i)" [(ngModel)]="element[column]">
+        </mat-form-field>
+      </mat-cell>
+    </span>
+
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columns; sticky: true;"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns;"></mat-row>
+
+</mat-table>
+
+<button id="hide" mat-raised-button color="accent">Get Checked Items</button> -->

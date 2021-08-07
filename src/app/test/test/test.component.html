@@ -1,0 +1,247 @@
+<p class="pt-10">
+  <mat-toolbar>
+    <span>Proforma Invoice
+    </span>
+  </mat-toolbar>
+</p>
+<div class="grid grid-cols-1 gap-3  sm:grid-cols-4">
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Exporter</mat-label>
+      <mat-select [(ngModel)]="ddlExporter" name="Exporter">
+        <mat-option *ngFor="let  exporter of exporters" [value]="exporter.value">
+          {{exporter.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Company</mat-label>
+      <mat-select [(ngModel)]="ddlCompany" (selectionChange)="changeCompany($event.value)" name="Company">
+        <mat-option *ngFor="let  company of companies" [value]="company.value">
+          {{company.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.InvoiceDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>InvoiceType</mat-label>
+      <mat-select [(ngModel)]="ddlInvoiceType" name="InvoiceType">
+        <mat-option *ngFor="let  invoiceTypes of invoiceTypes" [value]="invoiceTypes.value">
+          {{invoiceTypes.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Factory</mat-label>
+      <mat-select [(ngModel)]="ddlFactory" (selectionChange)="selectFactory($event.value)" name="Company">
+        <mat-option *ngFor="let  factory of factories" [value]="factory.value">
+          {{factory.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Exporter Bank</mat-label>
+      <mat-select [(ngModel)]="ddlExporterBank" name="Company">
+        <mat-option *ngFor="let  exporterBank of exporterBanks" [value]="exporterBank.value">
+          {{exporterBank.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Invoice No</mat-label>
+      <input matInput [disabled]="isChecked" [(ngModel)]="exportInvoice.InvoiceNo">
+    </mat-form-field>
+    <mat-slide-toggle [(ngModel)]="isChecked"></mat-slide-toggle>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Importer Name Billing</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.CompanyNameBilling">
+    </mat-form-field>
+
+
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Importer Billing Address</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.AddressBilling">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Importer Name Delivery</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.CompanyNameDelivery">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Importer Delivery Address</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.AddressDelivery">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field appearance="fill">
+      <mat-label>Select Email</mat-label>
+      <mat-select [(ngModel)]="ddlEmail" name="Company">
+        <mat-option *ngFor="let  email of emails" [value]="email.value">
+          {{email.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Place of Loading</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.PlaceOfLoading">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Final Destination</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.FinalDestination">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Type of Carrier</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.TypeOfCarrier">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description of Goods</mat-label>
+      <input matInput [(ngModel)]="exportInvoice.DescriptionOfGoods">
+    </mat-form-field>
+  </div>
+</div>
+<p class="pt-5">
+  <mat-toolbar>
+    <span>Sales Order List
+    </span>
+  </mat-toolbar>
+</p>
+<div class="">
+  <app-order-list [dataSource]="dataSource" [addFilter]="false" [isButton]="false" [isSerial]="false"
+    [ispaginator]="false" [isSelect]="true">
+  </app-order-list>
+
+</div>
+<p class="pt-5">
+  <mat-toolbar>
+    <span>Sales Order List
+    </span>
+  </mat-toolbar>
+</p>
+<div>
+
+  <app-dynamic-table></app-dynamic-table>
+</div>
+
+<p class="pt-5">
+  <mat-toolbar>
+    <span> Packing Info
+
+    </span>
+  </mat-toolbar>
+</p>
+
+<div class="grid grid-cols-1 gap-3  sm:grid-cols-4">
+  <div>
+    <button mat-raised-button (click)="getInfo()">Get PackingInfo </button>
+  </div>
+
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Total Carton:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.TotalCarton">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Label Net Weight:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.LabelNetWeight">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Label Gross Weight:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.LabelGrossWeight">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ribbon Net Weight:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.RibonNetWeight">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Ribbon Gross Weight:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.RibonGrossWeight">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Carton Measurement:</mat-label>
+      <input matInput [(ngModel)]="packingInfo.CartonMeasurement">
+    </mat-form-field>
+  </div>
+
+</div>
+<p class="pt-5">
+  <mat-toolbar>
+    <span>Terms and Conditions
+    </span>
+  </mat-toolbar>
+</p>
+<div>
+  <div [(ngModel)]="gg" [ngxSummernote]="config">
+
+  </div>
+
+</div>
+<div class="grid grid-cols-1 gap-3  sm:grid-cols-4">
+  <div>
+    <button mat-raised-button (click)="save()">Save </button>
+  </div>
+  <div>
+    <button mat-raised-button (click)="getInfo()">Lock and Submit </button>
+  </div>
+  <div>
+    <button mat-raised-button (click)="reset()">Reset </button>
+  </div>
+</div>
+<p class="pt-5">
+  <mat-toolbar>
+    <span>Proforma Invoice List
+    </span>
+  </mat-toolbar>
+</p>
+<div class="">
+
+  <app-order-list [dataSource]="dataSource" [addFilter]="true" [isButton]="true" [isSerial]="true" [ispaginator]="true"
+    [isSelect]="false">
+  </app-order-list>
+</div>

@@ -1,47 +1,56 @@
-<mat-sidenav-container autosize >
-    <mat-sidenav #sidenav mode="side" opened="true">
-     
+<mat-sidenav-container autosize>
+  <mat-sidenav #sidenav mode="side" opened="true">
 
-      <mat-nav-list>
+
+    <mat-nav-list>
       <mat-list-item>
-        <mat-icon mat-list-icon class="chevron-button sidenav-button" (click)="isExpanded = !isExpanded" [ngClass]="{'rotated': isExpanded}">chevron_right</mat-icon>
- 
+        <mat-icon mat-list-icon class="chevron-button sidenav-button" (click)="isExpanded = !isExpanded"
+          [ngClass]="{'rotated': isExpanded}">chevron_right</mat-icon>
+
       </mat-list-item>
     </mat-nav-list>
     <mat-nav-list><span class="material-icons-outlined">
-      
-        </span>
-        <mat-list-item [routerLink]="'landing'" [routerLinkActive]="['is-active']">
-            
-        <mat-icon aria-hidden="false"   aria-label="Example home icon">home</mat-icon>
+
+      </span>
+      <mat-list-item [routerLink]="'landing'" [routerLinkActive]="['is-active']">
+
+        <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
         <span *ngIf="isExpanded">Home</span>
-           
-        </mat-list-item>
-      </mat-nav-list>
-      <mat-nav-list>
-        <mat-list-item>
-        <mat-icon aria-hidden="false"  [routerLink]="'user-entry'"  aria-label="Example home icon" [routerLinkActive]="['is-active']">person_add</mat-icon>
+
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon aria-hidden="false" [routerLink]="'user-entry'" aria-label="Example home icon"
+          [routerLinkActive]="['is-active']">person_add</mat-icon>
         <span *ngIf="isExpanded">User Entry</span>
-        </mat-list-item>
-      </mat-nav-list>
-      <mat-nav-list>
-        <mat-list-item>
-        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">qr_code_2</mat-icon>
-        <span  *ngIf="isExpanded">Product Entry</span>
-        </mat-list-item>
-        <mat-list-item (click)="logOut()">
-            <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">logout</mat-icon>
-            <span  *ngIf="isExpanded">LogOut</span>
-            </mat-list-item>
-      </mat-nav-list>
-    </mat-sidenav>
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">qr_code_2
+        </mat-icon>
+        <span *ngIf="isExpanded">Product Entry</span>
+      </mat-list-item>
+      <mat-list-item>
+        <mat-icon aria-hidden="false" [routerLink]="'test'" aria-label="Example home icon"
+          [routerLinkActive]="['is-active']">qr_code_2</mat-icon>
+        <span *ngIf="isExpanded">Test</span>
+      </mat-list-item>
+      <mat-list-item (click)="logOut()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" [routerLinkActive]="['is-active']">logout
+        </mat-icon>
+        <span *ngIf="isExpanded">LogOut</span>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
 
-    <div class="content">
-      <mat-toolbar to>
-        <h4>Hello everyone</h4>
-      </mat-toolbar>
-      <router-outlet></router-outlet>
-    </div>
+  <div class="content">
+    <mat-toolbar to>
+      <h4>Hello everyone</h4>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </div>
 
 
-  </mat-sidenav-container>
+</mat-sidenav-container>
